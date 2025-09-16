@@ -6,22 +6,33 @@ const Navbar = ({ currentPage, setCurrentPage }) => {
   const [isProfileOpen, setIsProfileOpen] = useState(false);
 
   const navItems = [
-    { id: 'home', label: 'Home', icon: '🏠' },
-    { id: 'matches', label: 'Matches', icon: '💝' },
-    { id: 'wallet', label: 'Wallet', icon: '💳' },
-    { id: 'profile', label: 'Profile', icon: '👤' }
+    { id: 'home', label: 'Home' },
+    { id: 'matches', label: 'Matches' },
+    { id: 'wallet', label: 'Wallet' },
+    { id: 'profile', label: 'Profile' }
   ];
 
   return (
-    <nav className="bg-white shadow-sm border-b border-gray-100">
+    <nav className="bg-white shadow-sm border-b border-gray-100 relative">
+      {/* Dots pattern for navbar */}
+      <div className="absolute inset-0 opacity-15 pointer-events-none" style={{
+        backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23000000' fill-opacity='0.3'%3E%3Ccircle cx='10' cy='10' r='0.8'/%3E%3Ccircle cx='50' cy='50' r='0.8'/%3E%3Ccircle cx='30' cy='30' r='0.8'/%3E%3C/g%3E%3C/svg%3E")`
+      }}></div>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <div className="flex items-center">
             <div className="flex-shrink-0">
-              <h1 className="text-2xl font-bold bg-gradient-to-r from-primary-600 to-secondary-600 bg-clip-text text-transparent">
-                SubSwap
-              </h1>
+              <div className="flex items-center space-x-3">
+                <img 
+                  src="https://i.ibb.co/XfdSDynr/Chat-GPT-Image-Sep-16-2025-09-12-45-AM.png" 
+                  alt="Intent Swap Logo" 
+                  className="w-8 h-8 rounded"
+                />
+                <h1 className="text-2xl font-bold text-red-600">
+                  Intent Swap
+                </h1>
+              </div>
             </div>
           </div>
 
@@ -32,13 +43,12 @@ const Navbar = ({ currentPage, setCurrentPage }) => {
                 <button
                   key={item.id}
                   onClick={() => setCurrentPage(item.id)}
-                  className={`px-4 py-2 rounded-xl text-sm font-medium transition-all duration-200 flex items-center space-x-2 ${
+                  className={`px-4 py-2 rounded-xl text-sm font-medium transition-all duration-200 ${
                     currentPage === item.id
                       ? 'bg-primary-100 text-primary-700 shadow-sm'
                       : 'text-gray-600 hover:text-primary-600 hover:bg-gray-50'
                   }`}
                 >
-                  <span className="text-lg">{item.icon}</span>
                   <span>{item.label}</span>
                 </button>
               ))}
@@ -99,13 +109,12 @@ const Navbar = ({ currentPage, setCurrentPage }) => {
             <button
               key={item.id}
               onClick={() => setCurrentPage(item.id)}
-              className={`w-full flex items-center space-x-3 px-3 py-2 rounded-xl text-base font-medium transition-all duration-200 ${
+              className={`w-full flex items-center px-3 py-2 rounded-xl text-base font-medium transition-all duration-200 ${
                 currentPage === item.id
                   ? 'bg-primary-100 text-primary-700'
                   : 'text-gray-600 hover:text-primary-600 hover:bg-white'
               }`}
             >
-              <span className="text-xl">{item.icon}</span>
               <span>{item.label}</span>
             </button>
           ))}

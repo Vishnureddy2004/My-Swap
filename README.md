@@ -1,4 +1,4 @@
-# SubSwap - Subscription Exchange Platform
+# Intent Swap - Subscription Exchange Platform
 
 A modern platform where people can exchange subscriptions based on what they have and what they want.
 
@@ -44,11 +44,11 @@ Before you begin, ensure you have:
    npm run dev
    ```
 
-3. **Open SubSwap**
+3. **Open Intent Swap**
    Visit [http://localhost:3000](http://localhost:3000)
 
 ### Demo Mode
-SubSwap works in demo mode by default:
+Intent Swap works in demo mode by default:
 - No database required for testing
 - User data stored in browser localStorage
 - Perfect for trying out all features
@@ -56,7 +56,7 @@ SubSwap works in demo mode by default:
 ## 📁 Project Structure
 
 ```
-SubSwap/
+Intent Swap/
 ├── frontend/                 # React + TailwindCSS app
 │   ├── src/
 │   │   ├── components/        # Reusable UI components
@@ -76,7 +76,7 @@ SubSwap/
 └── README.md                # This file
 ```
 
-## 🎮 How to Use SubSwap
+## 🎮 How to Use Intent Swap
 
 ### 1. Sign Up
 - Enter your username and email
@@ -164,7 +164,53 @@ Update your Twitter handle in `Footer.jsx`:
 
 ## 🚀 Deployment
 
-### Frontend (Vercel)
+### Vercel Deployment (Recommended)
+
+**Prerequisites:**
+1. [Vercel account](https://vercel.com/signup) (free)
+2. Vercel CLI installed globally
+
+**Option 1: Using Vercel CLI**
+```bash
+# Login to Vercel (first time only)
+vercel login
+
+# Deploy preview
+npm run deploy:preview
+
+# Deploy to production
+npm run deploy
+```
+
+**Option 2: Using PowerShell Script**
+```powershell
+# Deploy preview
+.\deploy.ps1
+
+# Deploy production
+.\deploy.ps1 -Environment production
+```
+
+**Option 3: Git Integration**
+1. Push your code to GitHub
+2. Connect your repository to Vercel
+3. Auto-deploy on every push to main branch
+
+**Configuration Files:**
+- `vercel.json` - Main Vercel configuration
+- `frontend/vercel.json` - Frontend-specific settings
+- `.vercelignore` - Files to exclude from deployment
+
+**Environment Variables (if needed):**
+```bash
+# Set environment variables in Vercel dashboard
+vercel env add VITE_API_URL
+vercel env add VITE_DATABASE_URL
+```
+
+### Alternative Deployments
+
+**Frontend (Other Platforms)**
 1. Build: `cd frontend && npm run build`
 2. Deploy the `dist` folder to Vercel
 3. Set environment variables if needed
@@ -216,7 +262,7 @@ This project is licensed under the MIT License.
 
 ---
 
-### 🎉 Enjoy SubSwap!
+### 🎉 Enjoy Intent Swap!
 
 **Start swapping subscriptions today and build a community of shared digital experiences!**
 

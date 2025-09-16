@@ -23,7 +23,7 @@ app.use(express.urlencoded({ extended: true }));
 app.get('/api/health', (req, res) => {
   res.status(200).json({ 
     status: 'OK', 
-    message: 'SubSwap API is running!',
+    message: 'Intent Swap API is running!',
     timestamp: new Date().toISOString()
   });
 });
@@ -31,7 +31,7 @@ app.get('/api/health', (req, res) => {
 // Hello world endpoint
 app.get('/api/hello', (req, res) => {
   res.json({ 
-    message: 'Hello from SubSwap API! 🚀',
+    message: 'Hello from Intent Swap API! 🚀',
     version: '1.0.0'
   });
 });
@@ -135,7 +135,7 @@ const startServer = async () => {
     
     // Start the server
     app.listen(PORT, () => {
-      console.log(`🚀 SubSwap API server running on port ${PORT}`);
+      console.log(`🚀 Intent Swap API server running on port ${PORT}`);
       console.log(`📡 Health check: http://localhost:${PORT}/api/health`);
       console.log(`🌐 API Base URL: http://localhost:${PORT}/api`);
     });

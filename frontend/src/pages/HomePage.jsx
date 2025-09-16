@@ -36,7 +36,9 @@ const HomePage = () => {
   };
 
   return (
-    <div className="max-w-4xl mx-auto p-6">
+    <div className="min-h-screen bg-white" style={{
+      backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23000000' fill-opacity='0.15'%3E%3Ccircle cx='10' cy='10' r='0.8'/%3E%3Ccircle cx='50' cy='50' r='0.8'/%3E%3Ccircle cx='30' cy='30' r='0.8'/%3E%3C/g%3E%3C/svg%3E")`
+    }}>
       {/* Match Animation */}
       {showMatchAnimation && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
@@ -48,104 +50,122 @@ const HomePage = () => {
         </div>
       )}
 
-      {/* Welcome Section */}
-      <div className="text-center mb-8">
-        <h1 className="text-3xl font-bold text-gray-900 mb-2">
-          Welcome back, {user?.username}! 👋
-        </h1>
-        <p className="text-gray-600">
-          Ready to swap some subscriptions? Let's find your perfect match!
-        </p>
-      </div>
-
-      {/* Main Swap Interface */}
-      <div className="grid md:grid-cols-2 gap-6 mb-8">
-        {/* I HAVE Card */}
-        <div className="bg-white rounded-3xl shadow-lg border border-gray-100 p-8 transition-all duration-300 hover:shadow-xl">
-          <div className="text-center mb-6">
-            <div className="text-4xl mb-4">🎯</div>
-            <h2 className="text-2xl font-bold text-gray-900 mb-2">I HAVE</h2>
-            <p className="text-gray-600">What subscription do you currently have?</p>
-          </div>
-          
-          <select
-            value={haveService}
-            onChange={(e) => setHaveService(e.target.value)}
-            className="w-full px-4 py-4 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all duration-200 text-lg"
-          >
-            <option value="">Select a service...</option>
-            {services.map(service => (
-              <option key={service} value={service}>{service}</option>
-            ))}
-          </select>
+      <div className="container mx-auto px-6 py-8">
+        {/* Welcome Section */}
+        <div className="text-center mb-8">
+          <h1 className="text-3xl font-bold text-gray-900 mb-2">
+            Welcome back, {user?.username}! 👋
+          </h1>
+          <p className="text-gray-600">
+            Ready to swap some subscriptions? Let's find your perfect match!
+          </p>
         </div>
 
-        {/* I WANT Card */}
-        <div className="bg-white rounded-3xl shadow-lg border border-gray-100 p-8 transition-all duration-300 hover:shadow-xl">
-          <div className="text-center mb-6">
-            <div className="text-4xl mb-4">🎁</div>
-            <h2 className="text-2xl font-bold text-gray-900 mb-2">I WANT</h2>
-            <p className="text-gray-600">What subscription would you like to get?</p>
-          </div>
-          
-          <select
-            value={wantService}
-            onChange={(e) => setWantService(e.target.value)}
-            className="w-full px-4 py-4 border border-gray-200 rounded-xl focus:ring-2 focus:ring-secondary-500 focus:border-transparent transition-all duration-200 text-lg"
-          >
-            <option value="">Select a service...</option>
-            {services.map(service => (
-              <option key={service} value={service}>{service}</option>
-            ))}
-          </select>
-        </div>
-      </div>
-
-      {/* Find Matches Button */}
-      <div className="text-center mb-8">
-        <button
-          onClick={handleFindMatches}
-          disabled={!haveService || !wantService}
-          className="bg-gradient-to-r from-primary-600 to-secondary-600 text-white font-bold py-4 px-12 rounded-2xl text-xl shadow-lg hover:from-primary-700 hover:to-secondary-700 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed transform hover:scale-105"
-        >
-          🔍 Find Matches
-        </button>
-      </div>
-
-      {/* Current Selection Display */}
-      {(haveService || wantService) && (
-        <div className="bg-gradient-to-r from-primary-50 to-secondary-50 rounded-2xl p-6 border border-primary-100">
-          <h3 className="text-lg font-semibold text-gray-900 mb-3">Your Current Selection:</h3>
-          <div className="flex flex-wrap gap-4">
-            {haveService && (
-              <div className="bg-white px-4 py-2 rounded-xl border border-primary-200">
-                <span className="text-sm text-gray-600">I have:</span>
-                <span className="ml-2 font-medium text-primary-700">{haveService}</span>
+        {/* Main Swap Interface */}
+        <div className="grid md:grid-cols-2 gap-6 mb-8">
+          {/* I HAVE Card */}
+          <div className="bg-white rounded-3xl shadow-lg border border-gray-100 p-8 transition-all duration-300 hover:shadow-xl relative">
+            {/* Dots pattern for I HAVE card */}
+            <div className="absolute inset-0 opacity-10 pointer-events-none rounded-3xl" style={{
+              backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23000000' fill-opacity='0.3'%3E%3Ccircle cx='10' cy='10' r='0.8'/%3E%3Ccircle cx='50' cy='50' r='0.8'/%3E%3Ccircle cx='30' cy='30' r='0.8'/%3E%3C/g%3E%3C/svg%3E")`
+            }}></div>
+            <div className="relative z-10">
+              <div className="text-center mb-6">
+                <div className="text-4xl mb-4">🎯</div>
+                <h2 className="text-2xl font-bold text-gray-900 mb-2">I HAVE</h2>
+                <p className="text-gray-600">What subscription do you currently have?</p>
               </div>
-            )}
-            {wantService && (
-              <div className="bg-white px-4 py-2 rounded-xl border border-secondary-200">
-                <span className="text-sm text-gray-600">I want:</span>
-                <span className="ml-2 font-medium text-secondary-700">{wantService}</span>
+              
+              <select
+                value={haveService}
+                onChange={(e) => setHaveService(e.target.value)}
+                className="w-full px-4 py-4 border border-gray-200 rounded-xl focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all duration-200 text-lg"
+              >
+                <option value="">Select a service...</option>
+                {services.map(service => (
+                  <option key={service} value={service}>{service}</option>
+                ))}
+              </select>
+            </div>
+          </div>
+
+          {/* I WANT Card */}
+          <div className="bg-white rounded-3xl shadow-lg border border-gray-100 p-8 transition-all duration-300 hover:shadow-xl relative">
+            {/* Dots pattern for I WANT card */}
+            <div className="absolute inset-0 opacity-10 pointer-events-none rounded-3xl" style={{
+              backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23000000' fill-opacity='0.3'%3E%3Ccircle cx='10' cy='10' r='0.8'/%3E%3Ccircle cx='50' cy='50' r='0.8'/%3E%3Ccircle cx='30' cy='30' r='0.8'/%3E%3C/g%3E%3C/svg%3E")`
+            }}></div>
+            <div className="relative z-10">
+              <div className="text-center mb-6">
+                <div className="text-4xl mb-4">🎁</div>
+                <h2 className="text-2xl font-bold text-gray-900 mb-2">I WANT</h2>
+                <p className="text-gray-600">What subscription would you like to get?</p>
               </div>
-            )}
+              
+              <select
+                value={wantService}
+                onChange={(e) => setWantService(e.target.value)}
+                className="w-full px-4 py-4 border border-gray-200 rounded-xl focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all duration-200 text-lg"
+              >
+                <option value="">Select a service...</option>
+                {services.map(service => (
+                  <option key={service} value={service}>{service}</option>
+                ))}
+              </select>
+            </div>
           </div>
         </div>
-      )}
 
-      {/* Quick Stats */}
-      <div className="grid grid-cols-3 gap-4 mt-8">
-        <div className="bg-white rounded-2xl p-6 text-center shadow-sm border border-gray-100">
-          <div className="text-2xl font-bold text-primary-600">{user?.credits || 100}</div>
-          <div className="text-sm text-gray-600">Credits</div>
+        {/* Find Matches Button */}
+        <div className="text-center mb-8">
+          <button
+            onClick={handleFindMatches}
+            disabled={!haveService || !wantService}
+            className="bg-black text-red-500 font-bold py-4 px-12 rounded-2xl text-xl shadow-lg hover:bg-gray-900 hover:text-red-400 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed transform hover:scale-105 relative overflow-hidden"
+          >
+            {/* Dots pattern for button */}
+            <div className="absolute inset-0 opacity-20 pointer-events-none" style={{
+              backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.3'%3E%3Ccircle cx='10' cy='10' r='0.8'/%3E%3Ccircle cx='50' cy='50' r='0.8'/%3E%3Ccircle cx='30' cy='30' r='0.8'/%3E%3C/g%3E%3C/svg%3E")`
+            }}></div>
+            <span className="relative z-10">🔍 Find Matches</span>
+          </button>
         </div>
-        <div className="bg-white rounded-2xl p-6 text-center shadow-sm border border-gray-100">
-          <div className="text-2xl font-bold text-secondary-600">{user?.hasServices?.length || 0}</div>
-          <div className="text-sm text-gray-600">Services Shared</div>
-        </div>
-        <div className="bg-white rounded-2xl p-6 text-center shadow-sm border border-gray-100">
-          <div className="text-2xl font-bold text-gray-600">0</div>
-          <div className="text-sm text-gray-600">Successful Swaps</div>
+
+        {/* Current Selection Display */}
+        {(haveService || wantService) && (
+          <div className="bg-gradient-to-r from-red-50 to-red-50 rounded-2xl p-6 border border-red-100 mb-8">
+            <h3 className="text-lg font-semibold text-gray-900 mb-3">Your Current Selection:</h3>
+            <div className="flex flex-wrap gap-4">
+              {haveService && (
+                <div className="bg-white px-4 py-2 rounded-xl border border-red-200">
+                  <span className="text-sm text-gray-600">I have:</span>
+                  <span className="ml-2 font-medium text-red-700">{haveService}</span>
+                </div>
+              )}
+              {wantService && (
+                <div className="bg-white px-4 py-2 rounded-xl border border-red-200">
+                  <span className="text-sm text-gray-600">I want:</span>
+                  <span className="ml-2 font-medium text-red-700">{wantService}</span>
+                </div>
+              )}
+            </div>
+          </div>
+        )}
+
+        {/* Quick Stats */}
+        <div className="grid grid-cols-3 gap-4">
+          <div className="bg-white rounded-2xl p-6 text-center shadow-sm border border-gray-100">
+            <div className="text-2xl font-bold text-red-600">{user?.credits || 100}</div>
+            <div className="text-sm text-gray-600">Credits</div>
+          </div>
+          <div className="bg-white rounded-2xl p-6 text-center shadow-sm border border-gray-100">
+            <div className="text-2xl font-bold text-red-600">{user?.hasServices?.length || 0}</div>
+            <div className="text-sm text-gray-600">Services Shared</div>
+          </div>
+          <div className="bg-white rounded-2xl p-6 text-center shadow-sm border border-gray-100">
+            <div className="text-2xl font-bold text-gray-600">0</div>
+            <div className="text-sm text-gray-600">Successful Swaps</div>
+          </div>
         </div>
       </div>
     </div>

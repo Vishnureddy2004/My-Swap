@@ -17,7 +17,7 @@ export const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     // Check for existing user session
-    const savedUser = localStorage.getItem('subswap_user');
+    const savedUser = localStorage.getItem('intentswap_user');
     if (savedUser) {
       setUser(JSON.parse(savedUser));
     }
@@ -40,7 +40,7 @@ export const AuthProvider = ({ children }) => {
       };
       
       setUser(userData);
-      localStorage.setItem('subswap_user', JSON.stringify(userData));
+      localStorage.setItem('intentswap_user', JSON.stringify(userData));
       return { success: true, user: userData };
     } catch (error) {
       console.error('Login error:', error);
@@ -64,7 +64,7 @@ export const AuthProvider = ({ children }) => {
       };
       
       setUser(userData);
-      localStorage.setItem('subswap_user', JSON.stringify(userData));
+      localStorage.setItem('intentswap_user', JSON.stringify(userData));
       return { success: true, user: userData };
     } catch (error) {
       console.error('Signup error:', error);

@@ -1,8 +1,8 @@
 {
-  "name": "subswap-backend",
+  "name": "intentswap-backend",
   "version": "1.0.0",
   "type": "module",
-  "description": "SubSwap Backend API",
+  "description": "Intent Swap Backend API",
   "main": "server.js",
   "scripts": {
     "dev": "nodemon server.js",
@@ -10,7 +10,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": ["express", "api", "postgresql"],
-  "author": "SubSwap Team",
+  "author": "Intent Swap Team",
   "license": "MIT",
   "dependencies": {
     "express": "^4.18.2",

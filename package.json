@@ -1,17 +1,20 @@
 {
-  "name": "subswap-website",
+  "name": "intentswap-website",
   "version": "1.0.0",
   "type": "module",
-  "description": "SubSwap - A modern web application",
+  "description": "Intent Swap - A modern web application",
   "scripts": {
     "dev": "concurrently \"npm run dev:frontend\" \"npm run dev:backend\"",
     "dev:frontend": "cd frontend && npm run dev",
     "dev:backend": "cd backend && npm run dev",
     "build": "cd frontend && npm run build",
-    "install:all": "npm install && cd frontend && npm install && cd ../backend && npm install"
+    "install:all": "npm install && cd frontend && npm install && cd ../backend && npm install",
+    "deploy": "vercel --prod",
+    "deploy:preview": "vercel",
+    "vercel:init": "vercel"
   },
   "keywords": ["website", "react", "node", "express"],
-  "author": "SubSwap Team",
+  "author": "Intent Swap Team",
   "license": "MIT",
   "devDependencies": {
     "concurrently": "^8.2.2"

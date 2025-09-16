@@ -17,7 +17,7 @@ function AppContent() {
       <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-primary-50 via-white to-secondary-50">
         <div className="text-center">
           <div className="text-6xl mb-4 animate-pulse">🔄</div>
-          <p className="text-gray-600">Loading SubSwap...</p>
+          <p className="text-gray-600">Loading Intent Swap...</p>
         </div>
       </div>
     );
@@ -43,7 +43,11 @@ function AppContent() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-primary-50 via-white to-secondary-50 flex flex-col">
+    <div className="min-h-screen bg-white flex flex-col relative">
+      {/* Small Black Dots Background */}
+      <div className="absolute inset-0 opacity-20 pointer-events-none" style={{
+        backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23000000' fill-opacity='0.3'%3E%3Ccircle cx='10' cy='10' r='0.8'/%3E%3Ccircle cx='50' cy='50' r='0.8'/%3E%3Ccircle cx='30' cy='30' r='0.8'/%3E%3C/g%3E%3C/svg%3E")`
+      }}></div>
       <Navbar currentPage={currentPage} setCurrentPage={setCurrentPage} />
       <main className="flex-1 py-8">
         {renderPage()}

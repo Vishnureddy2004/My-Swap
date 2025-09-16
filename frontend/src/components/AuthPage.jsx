@@ -49,13 +49,24 @@ const AuthPage = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-gradient-to-br from-primary-50 via-white to-secondary-50">
+    <div className="min-h-screen flex flex-col bg-white relative">
+      {/* Small Black Dots Background */}
+      <div className="absolute inset-0 opacity-20 pointer-events-none" style={{
+        backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23000000' fill-opacity='0.3'%3E%3Ccircle cx='10' cy='10' r='0.8'/%3E%3Ccircle cx='50' cy='50' r='0.8'/%3E%3Ccircle cx='30' cy='30' r='0.8'/%3E%3C/g%3E%3C/svg%3E")`
+      }}></div>
       <div className="flex-1 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-md w-full space-y-8">
           <div className="text-center">
-            <h1 className="text-4xl font-bold bg-gradient-to-r from-primary-600 to-secondary-600 bg-clip-text text-transparent mb-2">
-              SubSwap
-            </h1>
+            <div className="flex justify-center items-center space-x-3 mb-4">
+              <img 
+                src="https://i.ibb.co/XfdSDynr/Chat-GPT-Image-Sep-16-2025-09-12-45-AM.png" 
+                alt="Intent Swap Logo" 
+                className="w-12 h-12 rounded"
+              />
+              <h1 className="text-4xl font-bold text-red-600">
+                Intent Swap
+              </h1>
+            </div>
             <h2 className="text-xl text-gray-600 mb-2">
               {isLogin ? 'Welcome back!' : 'Join the community'}
             </h2>
@@ -84,7 +95,7 @@ const AuthPage = () => {
                     required={!isLogin}
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
-                    className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all duration-200"
+                    className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all duration-200"
                     placeholder="Enter your username"
                   />
                 </div>
@@ -101,7 +112,7 @@ const AuthPage = () => {
                   required
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all duration-200"
+                  className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all duration-200"
                   placeholder="Enter your email"
                 />
               </div>
@@ -117,7 +128,7 @@ const AuthPage = () => {
                   required
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all duration-200"
+                  className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all duration-200"
                   placeholder="Enter your password"
                 />
               </div>
@@ -125,16 +136,22 @@ const AuthPage = () => {
               <button
                 type="submit"
                 disabled={loading}
-                className="w-full bg-gradient-to-r from-primary-600 to-secondary-600 text-white font-medium py-3 px-4 rounded-xl hover:from-primary-700 hover:to-secondary-700 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full bg-red-600 text-white font-medium py-3 px-4 rounded-xl hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed relative overflow-hidden"
               >
-                {loading ? 'Please wait...' : (isLogin ? 'Sign In' : 'Create Account')}
+                {/* Dots pattern for auth button */}
+                <div className="absolute inset-0 opacity-15 pointer-events-none" style={{
+                  backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.3'%3E%3Ccircle cx='10' cy='10' r='0.8'/%3E%3Ccircle cx='50' cy='50' r='0.8'/%3E%3Ccircle cx='30' cy='30' r='0.8'/%3E%3C/g%3E%3C/svg%3E")`
+                }}></div>
+                <span className="relative z-10">
+                  {loading ? 'Please wait...' : (isLogin ? 'Sign In' : 'Create Account')}
+                </span>
               </button>
             </form>
 
             <div className="mt-6 text-center">
               <button
                 onClick={() => setIsLogin(!isLogin)}
-                className="text-primary-600 hover:text-primary-700 font-medium text-sm"
+                className="text-red-600 hover:text-red-700 font-medium text-sm"
               >
                 {isLogin ? "Don't have an account? Sign up" : "Already have an account? Sign in"}
               </button>
